@@ -1,0 +1,44 @@
+mat-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.devices {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.example-card {
+  cursor: pointer;
+  width: auto;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  text-align: center;
+  border-radius: 2px;
+  box-shadow: 0.5rem 1rem 1rem 0 rgba(0, 0, 0, 0.6);
+  color: #333;
+  font-family: "Rubik", Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border-radius: 50%;
+}
+.example-card:hover {
+  background-color: black;
+  color: #fff;
+}
+.example-card:hover mat-card-subtitle {
+  color: #fff;
+}
+.rs-control .rs-range-color {
+  background-color: #61e054;
+}
+.rs-control .rs-path-color {
+  background-color: #ffffff;
+}
+.rs-control .rs-handle:after {
+  background-color: #161611;
+}
+.rs-control .rs-bg-color {
+  background-color: #ffffff;
+}
