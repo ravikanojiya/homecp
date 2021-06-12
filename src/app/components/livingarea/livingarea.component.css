@@ -12,8 +12,8 @@ mat-card {
   cursor: pointer;
   width: auto;
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   text-align: center;
   border-radius: 2px;
   box-shadow: 0.5rem 1rem 1rem 0 rgba(0, 0, 0, 0.6);
@@ -22,13 +22,15 @@ mat-card {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   border-radius: 50%;
+
 }
+mat-card-header{display: flex;flex-direction: column;justify-content: center;align-items: center;}
 .example-card:hover {
   background-color: black;
   color: #fff;
 }
 .example-card:hover mat-card-subtitle {
-  color: #fff;
+  color: #fff; text-align: center;
 }
 .rs-control .rs-range-color {
   background-color: #61e054;
@@ -41,4 +43,18 @@ mat-card {
 }
 .rs-control .rs-bg-color {
   background-color: #ffffff;
+}
+::ng-deep .success-snackbar{
+  background: lightgreen;
+  padding: 100px;
+  font-size: 54px !important;
+  color: darkslategray;
+  text-transform: uppercase;
+}
+::ng-deep .mat-simple-snackbar{
+  padding: 5px;
+  font-size: 26px;
+}
+::ng-deep .mat-simple-snackbar action{
+  font-size: 30px;
 }

@@ -6,6 +6,11 @@
   font-size: 36px;
   font-weight: 300;
   justify-content: space-between;
+  animation: ani 10s linear infinite;
+}
+@keyframes ani {
+  0%{filter: hue-rotate(0deg);}
+  100%{filter: hue-rotate(360deg);}
 }
 .sidebar-left {
   display: flex;

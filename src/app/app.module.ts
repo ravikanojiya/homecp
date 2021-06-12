@@ -29,9 +29,15 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import {
+  MatDialogModule,
+  MAT_DIALOG_DEFAULT_OPTIONS,
+} from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {
+  MatSnackBarModule,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+} from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -42,9 +48,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppartmentsComponent } from './components/appartments/appartments.component';
 import { OfficesComponent } from './components/offices/offices.component';
 import { LivingareaComponent } from './components/livingarea/livingarea.component';
+import { SidebarleftComponent } from './layout/pages/sidebarleft/sidebarleft.component';
+import { SidebarrightComponent } from './layout/pages/sidebarright/sidebarright.component';
+import { SidebarcenterComponent } from './layout/pages/sidebarcenter/sidebarcenter.component';
 
 @NgModule({
-  declarations: [AppComponent, AppartmentsComponent, OfficesComponent, LivingareaComponent,
+  declarations: [
+    AppComponent,
+    AppartmentsComponent,
+    OfficesComponent,
+    LivingareaComponent,
+    SidebarleftComponent,
+    SidebarrightComponent,
+    SidebarcenterComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +102,10 @@ import { LivingareaComponent } from './components/livingarea/livingarea.componen
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
+  providers: [
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
