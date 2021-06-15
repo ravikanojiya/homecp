@@ -1,29 +1,22 @@
-<h1>Living Room</h1>
-<div class="devices">
-  <form class="example-form" [formGroup]="formGroup" ngNativeValidate>
+<!-- <h1>Living Room</h1>
+<hr />
+<div class="devices"> -->
+  <!-- <form class="example-form" [formGroup]="formGroup" ngNativeValidate>
     <mat-card
       class="example-card"
       *ngFor="let d of getdevices"
       matTooltip="Use Swith to ON/OFF"
     >
       <mat-card-header>
-        <mat-card-title>{{ d.device | uppercase }}</mat-card-title>
-        <mat-card-subtitle>{{
-          d.status == "true" ? "ON" : "OFF"
-        }}</mat-card-subtitle>
+        <mat-card-title>{{ d.devname | uppercase }}</mat-card-title>
+
         <mat-slide-toggle
           [(ngModel)]="d.status"
           formControlName="status"
-          (change)="updateFan(d.device + ' is Trunning ', d.status)"
+          (change)="updateFan(d.devname + ' is Trunning ', d.status)"
         ></mat-slide-toggle>
       </mat-card-header>
     </mat-card>
-  </form>
-  <div id="handle1">
-</div>
-
-<ul>
-  <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Close</button>
-  </div>
-</ul>
+  </form> -->
+  <!-- <div id="handle1"></div> -->
+<!-- </div> -->

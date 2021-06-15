@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -10,10 +10,11 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataserviceService } from 'src/app/dataservice.service';
 import { LivingInt } from '../livingarea/living-int';
 import { LivingareaComponent } from '../livingarea/livingarea.component';
+import { RoomsComponent } from '../rooms/rooms.component';
 
 @Component({
   selector: 'app-appartments',
@@ -26,38 +27,51 @@ export class AppartmentsComponent implements OnInit {
   onoff = 'Off';
   formGroup: FormGroup;
   livingdata;
-  getallrooms;
-  roomsid;
+  getaptbyid;
+  aptid;
+  alldata = '';
+  getallpt;
   // constructor(public fb:FormBuilder,public dialogRef: MatDialogRef<AppartmentsComponent>,
   //   public dialog: MatDialog,  @Inject(MAT_DIALOG_DATA) public data: {name: string}) { }
   constructor(
     private ds: DataserviceService,
     private activroutes: ActivatedRoute,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.roomsid = this.activroutes.snapshot.params.id;
-    console.log(this.roomsid);
-
-    this.ds.getrooms().then((res) => {
-      this.getallrooms = res;
+    this.ds.getapt().subscribe((res) => {
+      this.getallpt = res.data.result;
+      console.log(res.data.result, 'apt');
     });
-    // this.formGroup = this.fb.group({
-    //   acceptTerms : false
-    // });
+
+    // this.ds.getData().then(res=>{
+    //   this.alldata=res;
+    // })
+    this.formGroup = new FormGroup({
+      acceptTerms: new FormControl('', Validators.requiredTrue),
+    });
   }
-  openDialog(): void {
-    const dialogRef = this.dialog.open(LivingareaComponent, {
-      width: '650px',
+
+  openDialog(id): void {
+    const dialogRef = this.dialog.open(RoomsComponent, {
+      width: '1150px',
+      data: { aptid: id },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
-      // this.animal = result;
     });
+
   }
-  // onNoClick(): void {
-  //   this.dialogRef.close();
+  // openDialog(): void {
+  //   const dialogRef = this.dialog.open(LivingareaComponent, {
+  //     width: '650px',
+  //   });
+
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     console.log('The dialog was closed');
+  //   });
   // }
 }

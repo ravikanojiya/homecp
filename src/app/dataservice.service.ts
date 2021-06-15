@@ -9,28 +9,46 @@ import { LivingInt } from './components/livingarea/living-int';
 })
 export class DataserviceService {
   constructor(private http: HttpClient) {}
-  getalluser(): Promise<any> {
-    return this.http.get(`${environment.base_URL}getalluser`).toPromise();
+  getapt(): Observable<any> {
+    return this.http.get(`${environment.base_URL}api/apartment/`);
   }
-
-  getData(): Promise<any> {
-    return this.http.get(`${environment.base_URL}users`).toPromise();
+  getaptbyid(id): Observable<any> {
+    return this.http.get(`${environment.base_URL}api/apartment/${id}`);
   }
-
-  getliving(): Promise<any> {
-    return this.http.get(`${environment.base_URL}livingarea`).toPromise();
+  getroombyaptid(aptid): Observable<any> {
+    return this.http.get(`${environment.base_URL}api/room/room/${aptid}`);
   }
-
-  getrooms(): Promise<any> {
-    return this.http.get(`${environment.base_URL}rooms`).toPromise();
-  }
-
-  getlivingbyid(id: number): Promise<any> {
-    return this.http
-      .get(`${environment.base_URL}getlivingbyid/${id}`)
-      .toPromise();
+  getdevbyid(roomid): Observable<any> {
+    return this.http.get(`${environment.base_URL}api/device/${roomid}`);
   }
   updatefan(model: any): Observable<any> {
-    return this.http.put(`${environment.base_URL}updatefan`, model);
+    return this.http.patch(`${environment.base_URL}api/device/updateOnOff`, model);
   }
+  getdevicebyroomid(roomid):Observable<any>{
+    return this.http.get(`${environment.base_URL}api/device/room/${roomid}`)
+  }
+  // getalluser(): Promise<any> {
+  //   return this.http.get(`${environment.base_URL}getalluser`).toPromise();
+  // }
+
+  // getData(): Promise<any> {
+  //   return this.http.get(`${environment.base_URL}users`).toPromise();
+  // }
+
+  // getliving(): Promise<any> {
+  //   return this.http.get(`${environment.base_URL}livingarea`).toPromise();
+  // }
+
+  // getrooms(): Promise<any> {
+  //   return this.http.get(`${environment.base_URL}rooms`).toPromise();
+  // }
+
+  // getlivingbyid(id: number): Promise<any> {
+  //   return this.http
+  //     .get(`${environment.base_URL}getlivingbyid/${id}`)
+  //     .toPromise();
+  // }
+  // updatefan(model: any): Observable<any> {
+  //   return this.http.put(`${environment.base_URL}updatefan`, model);
+  // }
 }

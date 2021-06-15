@@ -5,10 +5,10 @@
 <div class="sidebar-sub">
   <mat-card class="containt_one">
     <mat-chip-list>
-      <mat-chip routerLink="/appartment" color="accent" selected>
+      <mat-chip (click)="apt()" color="accent" selected>
         <mat-icon>apartment</mat-icon>&nbsp; Appartment</mat-chip
       >
-      <mat-chip routerLink="/office" color="primary">
+      <mat-chip (click)="office()" color="primary">
         <mat-icon>corporate_fare</mat-icon>&nbsp; Office</mat-chip
       >
     </mat-chip-list>
@@ -18,12 +18,11 @@
       </ul>
     </div> -->
   </mat-card>
+
   <mat-card class="containt_two">
-    <div class="title">
-      <mat-icon>shortcut</mat-icon> <span>&nbsp;Shortcuts</span>
-    </div>
-    <mat-divider [inset]="true"></mat-divider>
-    <form
+    <app-appartments *ngIf="aptselected == true"></app-appartments>
+    <app-offices *ngIf="offselected == true"></app-offices>
+    <!-- <form
       [formGroup]="formGroup"
       (ngSubmit)="onFormSubmit()"
       ngNativeValidate
@@ -69,7 +68,7 @@
           </mat-slide-toggle>
         </div>
       </div>
-    </form>
+    </form> -->
   </mat-card>
 </div>
 <mat-card class="containt_four">
@@ -83,6 +82,9 @@
     <app-offices></app-offices>
   </ng-template> -->
   <div class="appoff">
-    <router-outlet></router-outlet>
+    <app-offices></app-offices>
+    <!-- <router-outlet></router-outlet> -->
+    <!-- <app-sidebarcenter></app-sidebarcenter> -->
+    <!-- <app-rooms></app-rooms> -->
   </div>
 </mat-card>

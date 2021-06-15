@@ -1,0 +1,99 @@
+<div class="heading">
+  <span>
+    <h1>{{ devicedata[0].roomname | uppercase }}</h1>
+  </span>
+</div>
+<mat-divider style="margin-bottom: 10px; margin-top: 10px"></mat-divider>
+<div class="carddiv" *ngIf="devicedata">
+  <mat-card
+    *ngFor="let d of devicedata"
+    matTooltip="{{ devicedata[0].roomname | uppercase }}- {{
+      d.devname | uppercase
+    }}"
+  >
+    <span>
+      <svg
+        *ngIf="d.devname == 'fan'"
+        width="24"
+        height="24"
+        preserveAspectRatio="xMidYMid meet"
+        viewBox="0 0 24 24"
+        style="
+          -ms-transform: rotate(360deg);
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        "
+      >
+        <path
+          d="M12 11a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1m.5-9c4.5 0 4.61 3.57 2.25 4.75c-.99.49-1.43 1.54-1.62 2.47c.48.2.9.51 1.22.91c3.7-2 7.68-1.21 7.68 2.37c0 4.5-3.57 4.6-4.75 2.23c-.5-.99-1.56-1.43-2.49-1.62c-.2.48-.51.89-.91 1.23c1.99 3.69 1.2 7.66-2.38 7.66c-4.5 0-4.59-3.58-2.23-4.76c.98-.49 1.42-1.53 1.62-2.45c-.49-.2-.92-.52-1.24-.92C5.96 15.85 2 15.07 2 11.5C2 7 5.56 6.89 6.74 9.26c.5.99 1.55 1.42 2.48 1.61c.19-.48.51-.9.92-1.22C8.15 5.96 8.94 2 12.5 2z"
+          fill="#000000"
+        />
+        <rect x="0" y="0" width="144" height="144" fill="rgba(0, 0, 0, 0)" />
+      </svg>
+      <svg
+        *ngIf="d.devname == 'light'"
+        width="24"
+        height="24"
+        preserveAspectRatio="xMidYMid meet"
+        viewBox="0 0 24 24"
+        style="
+          -ms-transform: rotate(360deg);
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        "
+      >
+        <g fill="none">
+          <path
+            d="M10 22h4M5 9a7 7 0 0 1 14 0a6.972 6.972 0 0 1-3 5.734l-.542 2.566a2 2 0 0 1-1.977 1.7h-2.962a2 2 0 0 1-1.977-1.7L8 14.745A6.992 6.992 0 0 1 5 9z"
+            stroke="#000000"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M8 15h8"
+            stroke="#626262"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </g>
+        <rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)" />
+      </svg>
+      <svg
+        *ngIf="d.devname == 'ac'"
+        width="24"
+        height="24"
+        preserveAspectRatio="xMidYMid meet"
+        viewBox="0 0 24 24"
+        style="
+          -ms-transform: rotate(360deg);
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        "
+      >
+        <path
+          d="M6.59.66c2.34-1.81 4.88.4 5.45 3.84c.43 0 .85.12 1.23.34c.52-.6.98-1.42.8-2.34c-.42-2.15 1.99-3.89 4.28-.92c1.81 2.34-.4 4.88-3.85 5.45c0 .43-.11.86-.34 1.24c.6.51 1.42.97 2.34.79c2.13-.42 3.88 1.98.91 4.28c-2.34 1.81-4.88-.4-5.45-3.84c-.43 0-.85-.13-1.22-.35c-.52.6-.99 1.43-.81 2.35c.42 2.14-1.99 3.89-4.28.92c-1.82-2.35.4-4.89 3.85-5.45c0-.43.13-.85.35-1.23c-.6-.51-1.42-.98-2.35-.8c-2.13.42-3.88-1.98-.91-4.28M5 16h2a2 2 0 0 1 2 2v6H7v-2H5v2H3v-6a2 2 0 0 1 2-2m0 2v2h2v-2H5m7.93-2H15l-2.93 8H10l2.93-8M18 16h3v2h-3v4h3v2h-3a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2z"
+          fill="#000000"
+        />
+        <rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)" />
+      </svg>
+      {{ d.devname }}</span
+    >
+    <hr />
+
+    <mat-card-subtitle>
+      <div id="handle1"></div>
+    </mat-card-subtitle>
+    <form [formGroup]="formGroup">
+      <mat-slide-toggle
+        [(ngModel)]="d.onoffstatus"
+        formControlName="onoffstatus"
+        (change)="
+          updateFan(d.devname + ' is Trunning ', d.onoffstatus, d.devid)
+        "
+      ></mat-slide-toggle>
+      {{ d.onoffstatus == 1 ? "ON" : "OFF" }}
+    </form>
+  </mat-card>
+</div>

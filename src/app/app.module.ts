@@ -51,6 +51,9 @@ import { LivingareaComponent } from './components/livingarea/livingarea.componen
 import { SidebarleftComponent } from './layout/pages/sidebarleft/sidebarleft.component';
 import { SidebarrightComponent } from './layout/pages/sidebarright/sidebarright.component';
 import { SidebarcenterComponent } from './layout/pages/sidebarcenter/sidebarcenter.component';
+import { RoomsComponent } from './components/rooms/rooms.component';
+import { DevicesComponent } from './components/devices/devices.component';
+import { FooterComponent } from './layout/pages/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,9 @@ import { SidebarcenterComponent } from './layout/pages/sidebarcenter/sidebarcent
     SidebarleftComponent,
     SidebarrightComponent,
     SidebarcenterComponent,
+    RoomsComponent,
+    DevicesComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

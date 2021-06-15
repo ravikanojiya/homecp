@@ -17,9 +17,7 @@
 /* .containt_one span{
   text-align: center;
 } */
-mat-chip {
-  padding: 22px;
-}
+
 .containt_two {
   background-color: #28282e;
   display: flex;
@@ -84,4 +82,13 @@ mat-chip {
   align-items: center;
   font-size: 20px;
   cursor: pointer;
+}
+.aptlist {
+  display: flex;
+  align-items: center;
+}
+.example-card {
+  margin-top: 10px;
+  width: 250px;
+  margin-left: 10px;
 }

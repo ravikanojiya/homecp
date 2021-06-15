@@ -1,0 +1,97 @@
+<div class="rooms">
+  <mat-dialog-content class="mat-typography">
+    <!-- <ul *ngFor="let apt of getaptbyid">
+      <li>{{ apt.aptname }}</li>
+      <li>{{ apt.aptid }}</li>
+    </ul> -->
+    <div class="maindiv">
+      <div class="leftdiv">
+        <mat-chip color="accent" selected>Available-Rooms</mat-chip>
+
+        <mat-card *ngFor="let ar of getroombyaptid" color="accent">
+          <mat-header>{{ ar.roomname | uppercase }}</mat-header>
+          <div class="example-button-container">
+            <button
+              mat-mini-fab
+              color="warn"
+              [routerLink]="['/devices', ar.roomid]"
+              aria-label="Device Icon"
+            >
+              <mat-icon *ngIf="ar.roomid == 1">living</mat-icon>
+              <mat-icon *ngIf="ar.roomid == 2">bedroom_child</mat-icon>
+              <mat-icon *ngIf="ar.roomid == 3">bathroom</mat-icon>
+              <mat-icon *ngIf="ar.roomid == 4">kitchen</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+      </div>
+      <div class="rightdiv">
+        <mat-chip color="warn" style="width: 180px" selected>Devices</mat-chip>
+        <hr />
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-stroked-button mat-dialog-close color="warn">Close</button>
+  </mat-dialog-actions>
+
+  <!-- <mat-card class="example-card" *ngFor="let apt of getallpt"
+   >
+    <mat-icon *ngIf="apt.aptid==1">living</mat-icon>
+    <mat-icon *ngIf="apt.aptid==2">bedroom_child</mat-icon>
+    <mat-icon *ngIf="apt.aptid==3">bathroom</mat-icon>
+    <mat-icon *ngIf="apt.aptid==4">kitchen</mat-icon>
+    <mat-icon *ngIf="apt.aptid==5">book</mat-icon>
+
+    <mat-card-header>
+      <mat-card-title>{{apt.aptname | uppercase}}</mat-card-title>
+    </mat-card-header>
+    <button [routerLink]="['/sidbarcenter',apt.aptid]">Enter</button>
+  </mat-card> -->
+  <!-- <mat-card class="example-card"> -->
+  <!-- <mat-icon>bedroom_child</mat-icon> -->
+
+  <!-- <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Badroom</mat-card-title>
+      <mat-card-subtitle>Room 2</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+  <mat-card class="example-card">
+    <mat-icon>dining</mat-icon>
+
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Dining</mat-card-title>
+      <mat-card-subtitle>Room 3</mat-card-subtitle>
+
+    </mat-card-header>
+
+  </mat-card>
+  <mat-card class="example-card">
+    <mat-icon>bathroom</mat-icon>
+
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Bathroom</mat-card-title>
+      <mat-card-subtitle>Room 5</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+  <mat-card class="example-card">
+    <mat-icon>kitchen</mat-icon>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Kitchen</mat-card-title>
+      <mat-card-subtitle>Room 4</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+  <mat-card class="example-card">
+    <mat-icon>book</mat-icon>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Study room</mat-card-title>
+      <mat-card-subtitle>Room 3</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card> -->
+</div>

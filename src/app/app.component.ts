@@ -32,9 +32,9 @@ export class AppComponent implements OnInit {
   //   });
   // }
   ngOnInit(): void {
-    this.ds.getData().then(res=>{
-      this.alldata=res;
-    })
+    // this.ds.getData().then(res=>{
+    //   this.alldata=res;
+    // })
     this.formGroup = new FormGroup({
       acceptTerms : new FormControl('', Validators.requiredTrue),
     });
