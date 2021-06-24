@@ -7,7 +7,7 @@
     <mat-chip
       style="cursor: pointer; padding: 20px;background-color: black;color:#fff;"
       *ngFor="let apt of getallpt"
-      (click)="openDialog(apt.aptid)"
+      (click)="openDialog(apt.id)"
       >
       <mat-icon>apartment</mat-icon>&nbsp;&nbsp;{{ apt.aptname | uppercase }}</mat-chip
     >

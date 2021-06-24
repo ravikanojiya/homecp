@@ -9,6 +9,7 @@ import { RoomsComponent } from './components/rooms/rooms.component';
 import { SidebarcenterComponent } from './layout/pages/sidebarcenter/sidebarcenter.component';
 
 const routes: Routes = [
+
   {
     path: 'apartment',
     component: AppartmentsComponent,
@@ -21,7 +22,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -1,6 +1,6 @@
 mat-card {
-  width: 280px;
-  height: 280px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   box-shadow: 0.5rem 1rem 1rem 0 rgba(0, 0, 0, 0.6);
   display: flex;
@@ -35,4 +35,8 @@ mat-card:hover {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+}
+.mat-button-toggle-checked {
+  background-color: black;
+  color: #fff;
 }

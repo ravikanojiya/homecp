@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+   base_URL:"http://apihomeautomation.mehtaindia.co.in/"
+
 };

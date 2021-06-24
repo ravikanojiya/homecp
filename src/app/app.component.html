@@ -1,14 +1,32 @@
-<mat-card class="sidebar-top">Hauch</mat-card>
-<div class="main">
-  <mat-card class="sidebar-left">
-    <app-sidebarleft></app-sidebarleft>
-  </mat-card>
-  <mat-card class="sidebar-center">
-    <app-sidebarcenter></app-sidebarcenter>
-  </mat-card>
-  <mat-card class="sidebar-right">
-    <app-sidebarright></app-sidebarright>
-  </mat-card>
+<div class="container-fluid overflow-hidden px-0 py-0">
+<mat-card class="sidebar-top " >
+  <span class="logo">Veritas</span>
+  <span (click)="openDialog()" *ngIf="!getLogin()">
+    <mat-icon>login</mat-icon>&nbsp;LogIn
+  </span>
+  <span *ngIf="getLogin()" (click)="logout()">
+    <mat-icon>logout</mat-icon>&nbsp;LogOut
+  </span>
+</mat-card>
+<div class="row g-0 p-1">
+    <div class="col-md-1 bg-dark px-0 py-0">
+      <mat-card class="sidebar-left">
+        <app-sidebarleft></app-sidebarleft>
+      </mat-card>
+    </div>
+    <div class="col-md-7 bg-dark px-0 py-0">
+      <mat-card class="sidebar-center">
+        <app-sidebarcenter></app-sidebarcenter>
+      </mat-card>
+    </div>
+    <div class="col-md-4 bg-dark px-0 py-0">
+      <mat-card class="sidebar-right">
+        <app-sidebarright></app-sidebarright>
+      </mat-card>
+    </div>
+<router-outlet></router-outlet>
 
 </div>
+
 <app-footer></app-footer>
+</div>

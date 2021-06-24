@@ -5,7 +5,16 @@
   left: 0;
   right: 0;
 }
-
+.example-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: auto;
+}
+.example-card1 {
+  display: flex;
+}
 .example-events {
   width: 300px;
   height: 200px;
@@ -55,14 +64,27 @@ mat-card {
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 }
-mat-card:hover {
-  background-color: black;
+/* mat-card:hover {
+  background-color: #827F7F;
   color: #fff;
-}
-.rightdiv{
+} */
+.rightdiv {
   display: flex;
   flex-direction: column;
   padding: 20px;
   flex: 1;
 }
+.containt_two {
+  background-color: #827f7f;
+}
+
+/* .example-card1 mat-card {
+  margin-left: 10px;
+} */
+.example-card1 mat-card:hover {
+  background-color: #ff4e5c;
+  color: #fff;
+}
+.pull-right{margin-left: 700px;}

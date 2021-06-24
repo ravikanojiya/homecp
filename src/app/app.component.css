@@ -1,45 +1,60 @@
 .sidebar-top {
   display: flex;
-  flex-direction: column;
   background-color: #1a73e8;
   color: #f6f6f6;
-  font-size: 36px;
+  /* font-size: 36px; */
   font-weight: 300;
   justify-content: space-between;
   animation: ani 10s linear infinite;
+  cursor: pointer;
+}
+.logo {
+  font-size: 46px;
+}
+span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 @keyframes ani {
-  0%{filter: hue-rotate(0deg);}
-  100%{filter: hue-rotate(360deg);}
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
 }
 .sidebar-left {
-  display: flex;
-  flex-direction: column;
   background-color: #28282e;
-  max-width: 10%;
-  min-height: 100vh;
+  max-width: 100%;
+  min-height: 100%;
   color: #fff;
+  padding: 10px;
+  margin-left: 10px;
 }
 .sidebar-center {
   /* display: flex; */
-  max-width: 60%;
+  max-width: 100%;
   background-color: #191a1d;
-  flex: 1;
-  min-height: 100vh;
+  min-height: 100%;
   color: #fff;
+}
+.example-container {
+  width: 100%;
+  height: 100%;
+  margin: 10px;
+  border: 1px solid #555;
 }
 .sidebar-right {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #191a1d;
-  width: 452px;
+  width: 100%;
   min-height: 100vh;
   color: #fff;
 }
-.main {
-  display: flex;
-}
+
 .containt_one {
   background-color: #28282e;
   display: flex;
@@ -48,7 +63,7 @@
   font-size: 24px;
   height: 200px;
   color: #fff;
-  width: 50%;
+  width: 100%;
   border-radius: 10px;
   margin-right: 20px;
   margin-bottom: 20px;
@@ -97,7 +112,7 @@ mat-chip {
   display: flex;
   flex-direction: column;
   min-height: 200px;
-  width: 430px;
+  width: 100%;
   color: #fff;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -200,11 +215,11 @@ mat-chip {
   border-right-style: solid;
   border-color: yellow;
 }
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
   .sidebar-top {
     background-color: lightblue;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
   }
-}
+} */

@@ -6,7 +6,18 @@
   font-size: 24px;
   height: 200px;
   color: #fff;
-  width: 50%;
+  flex: 50%;
+  border-radius: 10px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.containt_one1 {
+  background-color: #28282e;
+  display: flex;
+  flex: 50%;
+  flex-direction: column;
+  height: 200px;
+  color: #fff;
   border-radius: 10px;
   margin-right: 20px;
   margin-bottom: 20px;
@@ -21,7 +32,7 @@
 .containt_two {
   background-color: #28282e;
   display: flex;
-  width: 50%;
+  flex: 50%;
   flex-direction: column;
   height: 200px;
   color: #fff;
@@ -40,6 +51,9 @@
   margin-bottom: 20px;
 }
 .sidebar-sub {
+  display: flex;
+}
+.sidebar-sub1 {
   display: flex;
 }
 .short {
@@ -92,3 +106,4 @@
   width: 250px;
   margin-left: 10px;
 }
+mat-chip{width: max-content;}

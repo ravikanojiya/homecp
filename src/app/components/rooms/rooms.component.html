@@ -1,97 +1,56 @@
-<div class="rooms">
-  <mat-dialog-content class="mat-typography">
-    <!-- <ul *ngFor="let apt of getaptbyid">
-      <li>{{ apt.aptname }}</li>
-      <li>{{ apt.aptid }}</li>
-    </ul> -->
-    <div class="maindiv">
-      <div class="leftdiv">
-        <mat-chip color="accent" selected>Available-Rooms</mat-chip>
+<div class="container-fluid">
+  <button mat-button mat-dialog-close class="ml-30" cdkFocusInitial>Close</button>
 
-        <mat-card *ngFor="let ar of getroombyaptid" color="accent">
-          <mat-header>{{ ar.roomname | uppercase }}</mat-header>
-          <div class="example-button-container">
-            <button
-              mat-mini-fab
-              color="warn"
-              [routerLink]="['/devices', ar.roomid]"
-              aria-label="Device Icon"
+  <mat-dialog-content>
+  <div class="row">
+
+    <div class="example-card">
+      <h2>
+        <span
+          >{{ roomnamedata }}&nbsp;Devices&nbsp;<mat-icon
+            >devices_other</mat-icon
+          ></span
+        >
+      </h2>
+      <hr />
+
+      <div class="example-card1 d-flex justify-content-center col-sm-12 flex-wrap">
+
+        <mat-progress-bar
+          mode="indeterminate"
+          *ngIf="isLoadingb"
+        ></mat-progress-bar>
+        <!-- <mat-progress-bar
+          mode="indeterminate"
+          *ngIf="isLoadingab"
+        ></mat-progress-bar> -->
+        <mat-card *ngFor="let devdata of deviceData">
+          {{ devdata.devname | titlecase }}
+          <mat-card-subtitle
+            >Status:-{{ devdata.attribute[0].value == true ? "ON" : "OFF" }}</mat-card-subtitle
+          >
+          <mat-card-content>
+            <!-- <form [formGroup]="devForm"> -->
+            <mat-slide-toggle
+              [(ngModel)]="devdata.attribute[0].value"
+              [checked]="devdata.attribute[0].value"
+              (change)="updateOnOff(devdata.attribute, devdata.id)"
             >
-              <mat-icon *ngIf="ar.roomid == 1">living</mat-icon>
-              <mat-icon *ngIf="ar.roomid == 2">bedroom_child</mat-icon>
-              <mat-icon *ngIf="ar.roomid == 3">bathroom</mat-icon>
-              <mat-icon *ngIf="ar.roomid == 4">kitchen</mat-icon>
-            </button>
-          </div>
+              {{ devdata.attribute[0].value == true ? "ON" : "OFF" }}
+            </mat-slide-toggle>
+            <!-- </form> -->
+          </mat-card-content>
         </mat-card>
+
       </div>
-      <div class="rightdiv">
-        <mat-chip color="warn" style="width: 180px" selected>Devices</mat-chip>
-        <hr />
-        <router-outlet></router-outlet>
-      </div>
+
+      <mat-error *ngIf="errorMessage">No data found</mat-error>
+      <mat-progress-bar mode="indeterminate" *ngIf="isLoadingb"></mat-progress-bar>
     </div>
-  </mat-dialog-content>
-  <mat-dialog-actions align="end">
-    <button mat-stroked-button mat-dialog-close color="warn">Close</button>
-  </mat-dialog-actions>
 
-  <!-- <mat-card class="example-card" *ngFor="let apt of getallpt"
-   >
-    <mat-icon *ngIf="apt.aptid==1">living</mat-icon>
-    <mat-icon *ngIf="apt.aptid==2">bedroom_child</mat-icon>
-    <mat-icon *ngIf="apt.aptid==3">bathroom</mat-icon>
-    <mat-icon *ngIf="apt.aptid==4">kitchen</mat-icon>
-    <mat-icon *ngIf="apt.aptid==5">book</mat-icon>
+  </div>
 
-    <mat-card-header>
-      <mat-card-title>{{apt.aptname | uppercase}}</mat-card-title>
-    </mat-card-header>
-    <button [routerLink]="['/sidbarcenter',apt.aptid]">Enter</button>
-  </mat-card> -->
-  <!-- <mat-card class="example-card"> -->
-  <!-- <mat-icon>bedroom_child</mat-icon> -->
-
-  <!-- <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Badroom</mat-card-title>
-      <mat-card-subtitle>Room 2</mat-card-subtitle>
-    </mat-card-header>
-  </mat-card>
-  <mat-card class="example-card">
-    <mat-icon>dining</mat-icon>
-
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Dining</mat-card-title>
-      <mat-card-subtitle>Room 3</mat-card-subtitle>
-
-    </mat-card-header>
-
-  </mat-card>
-  <mat-card class="example-card">
-    <mat-icon>bathroom</mat-icon>
-
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Bathroom</mat-card-title>
-      <mat-card-subtitle>Room 5</mat-card-subtitle>
-    </mat-card-header>
-  </mat-card>
-  <mat-card class="example-card">
-    <mat-icon>kitchen</mat-icon>
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Kitchen</mat-card-title>
-      <mat-card-subtitle>Room 4</mat-card-subtitle>
-    </mat-card-header>
-  </mat-card>
-  <mat-card class="example-card">
-    <mat-icon>book</mat-icon>
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Study room</mat-card-title>
-      <mat-card-subtitle>Room 3</mat-card-subtitle>
-    </mat-card-header>
-  </mat-card> -->
+</mat-dialog-content>
+<mat-divider class="mt-3"></mat-divider>
 </div>
+

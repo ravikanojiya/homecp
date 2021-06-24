@@ -1,16 +1,19 @@
 <div class="heading">
+  <div id="handle11" *ngIf="isShow"></div>
+
   <span>
-    <h1>{{ devicedata[0].roomname | uppercase }}</h1>
+    <h1>{{ devicedata?.roomname | uppercase }}</h1>
   </span>
 </div>
 <mat-divider style="margin-bottom: 10px; margin-top: 10px"></mat-divider>
+
 <div class="carddiv" *ngIf="devicedata">
+
   <mat-card
     *ngFor="let d of devicedata"
-    matTooltip="{{ devicedata[0].roomname | uppercase }}- {{
-      d.devname | uppercase
-    }}"
+    matTooltip=" {{ d.devname | uppercase }}"
   >
+
     <span>
       <svg
         *ngIf="d.devname == 'fan'"
@@ -83,17 +86,26 @@
     <hr />
 
     <mat-card-subtitle>
-      <div id="handle1"></div>
-    </mat-card-subtitle>
-    <form [formGroup]="formGroup">
-      <mat-slide-toggle
-        [(ngModel)]="d.onoffstatus"
-        formControlName="onoffstatus"
-        (change)="
-          updateFan(d.devname + ' is Trunning ', d.onoffstatus, d.devid)
-        "
-      ></mat-slide-toggle>
-      {{ d.onoffstatus == 1 ? "ON" : "OFF" }}
+      {{d.attribute[0].attribute}}-{{d.attribute[0].value}}
+  </mat-card-subtitle>
+    <form formGroup="formGrouponoff">
+      <mat-button-toggle-group
+        name="fontStyle"
+        aria-label="Font Style"
+        formControlName="attribute"
+        #group="matButtonToggleGroup"
+        [value]="d.attribute[0].value"
+        (change)="upadateonoff(group.value, d.devid)"
+      >
+        <mat-button-toggle value="on">ON</mat-button-toggle>
+        <mat-button-toggle value="off">OFF</mat-button-toggle>
+      </mat-button-toggle-group>
+
     </form>
+
+    <!-- <mat-slide-toggle [(ngModel)]="isChecked" formControlName="d.onoffstatus">
+      {{ isChecked=='VALID' ? "ON" : "OFF" }}
+    </mat-slide-toggle> -->
   </mat-card>
+
 </div>

@@ -54,7 +54,9 @@ import { SidebarcenterComponent } from './layout/pages/sidebarcenter/sidebarcent
 import { RoomsComponent } from './components/rooms/rooms.component';
 import { DevicesComponent } from './components/devices/devices.component';
 import { FooterComponent } from './layout/pages/footer/footer.component';
-
+import { LoginComponent } from './login/login.component';
+import { RoomlistComponent } from './components/roomlist/roomlist.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +69,8 @@ import { FooterComponent } from './layout/pages/footer/footer.component';
     RoomsComponent,
     DevicesComponent,
     FooterComponent,
+    LoginComponent,
+    RoomlistComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,7 @@ import { FooterComponent } from './layout/pages/footer/footer.component';
     MatPseudoCheckboxModule,
     MatButtonModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     MatAutocompleteModule,
     MatDatepickerModule,
     MatFormFieldModule,
@@ -107,6 +112,7 @@ import { FooterComponent } from './layout/pages/footer/footer.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },

@@ -1,90 +1,79 @@
-<mat-card class="containt_three">
-  <h2>Hi, Ravi ! Good evening...</h2>
+<div class="container-fluid py-0 px-0">
+
+<mat-card class="containt_three d-flex container-fluid">
+  <div>
+    <h2 *ngIf="getLogin() && uname">
+      {{ "Welcome " + uname | titlecase }}...!
+    </h2>
+  </div>
+  <div *ngIf="!getLogin()">
+    <h2>Welcome Hauch...!</h2>
+  </div>
 </mat-card>
+<div class="row justify-content-between">
+  <div class="col-md-6 col-sm-12 mb-4" style="height: 180px !important">
+    <mat-card class="text-white h-100" style="background-color: #27272d">
+      <h2 *ngIf="!getLogin()">No data found...</h2>
 
-<div class="sidebar-sub">
-  <mat-card class="containt_one">
-    <mat-chip-list>
-      <mat-chip (click)="apt()" color="accent" selected>
-        <mat-icon>apartment</mat-icon>&nbsp; Appartment</mat-chip
-      >
-      <mat-chip (click)="office()" color="primary">
-        <mat-icon>corporate_fare</mat-icon>&nbsp; Office</mat-chip
-      >
-    </mat-chip-list>
-    <!--
-      <ul>
-        <li *ngFor="let data of alldata">{{data.name}}-{{data.email}}</li>
-      </ul>
-    </div> -->
-  </mat-card>
+      <mat-chip-list *ngIf="getLogin()">
+        <mat-chip
+          color="accent"
+          selected
+          *ngFor="let att of getAptType"
+          matTooltip="Click to get details"
+        >
+          <span (click)="getAptbyid(att.id, uid)">
+            {{ att.apttype | titlecase }}</span
+          >
+        </mat-chip>
+      </mat-chip-list>
+    </mat-card>
+  </div>
 
-  <mat-card class="containt_two">
-    <app-appartments *ngIf="aptselected == true"></app-appartments>
-    <app-offices *ngIf="offselected == true"></app-offices>
-    <!-- <form
-      [formGroup]="formGroup"
-      (ngSubmit)="onFormSubmit()"
-      ngNativeValidate
-    >
-      <div class="short">
-        <div class="home">
-          <mat-icon>home</mat-icon>
-          <mat-slide-toggle
-            class="example-margin"
-            [color]="color"
-            formControlName="acceptTerms"
-            >{{ formGroup.status == "VALID" ? "ON" : "OFF" }}
-          </mat-slide-toggle>
-        </div>
-
-        <div class="home">
-          <mat-icon>tv</mat-icon>
-          <mat-slide-toggle
-            class="example-margin"
-            [color]="color"
-            formControlName="acceptTerms"
-            >{{ formGroup.status == "VALID" ? "ON" : "OFF" }}
-          </mat-slide-toggle>
-        </div>
-
-        <div class="home">
-          <mat-icon>wifi</mat-icon>
-          <mat-slide-toggle
-            class="example-margin"
-            [color]="color"
-            formControlName="acceptTerms"
-            >{{ formGroup.status == "VALID" ? "ON" : "OFF" }}
-          </mat-slide-toggle>
-        </div>
-
-        <div class="home">
-          <mat-icon>support</mat-icon>
-          <mat-slide-toggle
-            class="example-margin"
-            [color]="color"
-            formControlName="acceptTerms"
-            >{{ formGroup.status == "VALID" ? "ON" : "OFF" }}
-          </mat-slide-toggle>
-        </div>
-      </div>
-    </form> -->
-  </mat-card>
+  <div class="col-md-6 col-sm-12" style="height: 180px !important">
+    <mat-card class="text-white h-100" style="background-color: #27272d">
+      <h2>
+        <span><mat-icon>apartment</mat-icon>Appartments</span>
+      </h2>
+      <mat-chip-list *ngIf="getLogin()">
+        <mat-chip
+          matTooltip="Click to get rooms"
+          (click)="roomlist(aptdata.id)"
+          *ngFor="let aptdata of getuseraptdata"
+          >{{ aptdata.aptname | titlecase }}</mat-chip
+        >
+      </mat-chip-list>
+      <mat-error *ngIf="errorMessage">{{ apterrormsg }}</mat-error>
+      <mat-progress-bar
+        mode="indeterminate"
+        *ngIf="isLoadinga"
+      ></mat-progress-bar>
+    </mat-card>
+  </div>
 </div>
-<mat-card class="containt_four">
-  <div class="title">
-    <!-- <mat-icon>photo_camera</mat-icon><span>&nbsp;Others </span> -->
+<div class="row">
+  <div class="w-100 col-sm-12 col-md-12" style="height: 220px !important">
+    <mat-card class="text-white h-100" style="background-color: #27272d">
+      <h2>
+        <span><mat-icon>room</mat-icon>Rooms</span>
+      </h2>
+
+      <div *ngIf="!errorMessage">
+        <mat-chip-list *ngIf="getLogin()" style="margin-top: 10px">
+          <mat-chip
+            (click)="openDialog(roomdata.id, roomdata.roomname)"
+            *ngFor="let roomdata of roomData"
+            >{{ roomdata.roomname | titlecase }}</mat-chip
+          >
+        </mat-chip-list>
+        <mat-progress-bar
+          mode="indeterminate"
+          *ngIf="isLoading"
+        ></mat-progress-bar>
+      </div>
+      <mat-error *ngIf="errorMessage">{{ apterrormsg }}</mat-error>
+      <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+    </mat-card>
   </div>
-  <!-- <ng-container #appartment >
-    <app-appartments></app-appartments>
-  </ng-container>
-  <ng-template #office >
-    <app-offices></app-offices>
-  </ng-template> -->
-  <div class="appoff">
-    <app-offices></app-offices>
-    <!-- <router-outlet></router-outlet> -->
-    <!-- <app-sidebarcenter></app-sidebarcenter> -->
-    <!-- <app-rooms></app-rooms> -->
-  </div>
-</mat-card>
+</div>
+</div>

@@ -23,7 +23,6 @@ import { RoomsComponent } from '../rooms/rooms.component';
 })
 export class AppartmentsComponent implements OnInit {
   color = 'accent';
-  checked = false;
   onoff = 'Off';
   formGroup: FormGroup;
   livingdata;
@@ -31,6 +30,9 @@ export class AppartmentsComponent implements OnInit {
   aptid;
   alldata = '';
   getallpt;
+  roomid;
+  devicedata;
+  uid;
   // constructor(public fb:FormBuilder,public dialogRef: MatDialogRef<AppartmentsComponent>,
   //   public dialog: MatDialog,  @Inject(MAT_DIALOG_DATA) public data: {name: string}) { }
   constructor(
@@ -41,7 +43,11 @@ export class AppartmentsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.ds.getapt().subscribe((res) => {
+    this.roomid = this.activroutes.snapshot.params.id;
+    this.uid = sessionStorage.getItem('uid');
+    console.log(this.uid, 'uid');
+
+    this.ds.getaptbyuid(this.uid).subscribe((res) => {
       this.getallpt = res.data.result;
       console.log(res.data.result, 'apt');
     });
@@ -56,14 +62,21 @@ export class AppartmentsComponent implements OnInit {
 
   openDialog(id): void {
     const dialogRef = this.dialog.open(RoomsComponent, {
-      width: '1150px',
+      width: '1000px',
       data: { aptid: id },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
+      this.ds.getapt().subscribe((res) => {
+        this.getallpt = res.data.result;
+        console.log(res.data.result, 'apt');
+      });
+      this.ds.getdevicebyroomid(this.roomid).subscribe((res) => {
+        this.devicedata = res.data.result;
+        console.log(res.data.result);
+      });
     });
-
   }
   // openDialog(): void {
   //   const dialogRef = this.dialog.open(LivingareaComponent, {
