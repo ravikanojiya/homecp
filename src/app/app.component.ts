@@ -59,6 +59,14 @@ export class AppComponent implements OnInit {
       this.userdata = res.data.results;
     });
   }
+  myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
+  }
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
       width: '350px',

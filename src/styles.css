@@ -1,9 +1,9 @@
-body {
+/* body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: black;
   box-sizing: border-box;
-}
+} */
 * {
   box-sizing: border-box;
 }
@@ -24,6 +24,25 @@ body {
     color: #fff;
   }
 
+}
+body {
+  overflow-x: hidden;
+  /* padding-top: 55px; */
+}
+
+.sidebar.collapse.show,
+.sidebar.collapse.show + .col {
+  transition: .18s linear;
+  left: 0;
+}
+
+.sidebar.collapse ,
+.sidebar.collapsing,
+.sidebar.collapsing + .col {
+  transition: .18s linear;
+  z-index: 1050;
+  left: -25%;
+  height: auto !important;
 }
 /* You can add global styles to this file, and also import other style files
 *{box-sizing: border-box;}

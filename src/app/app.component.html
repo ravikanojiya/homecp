@@ -1,17 +1,50 @@
 <div class="container-fluid overflow-hidden px-0 py-0">
-<mat-card class="sidebar-top " >
-  <span class="logo">Veritas</span>
-  <span (click)="openDialog()" *ngIf="!getLogin()">
-    <mat-icon>login</mat-icon>&nbsp;LogIn
-  </span>
-  <span *ngIf="getLogin()" (click)="logout()">
-    <mat-icon>logout</mat-icon>&nbsp;LogOut
-  </span>
-</mat-card>
-<div class="row g-0 p-1">
+  <mat-card class="sidebar-top">
+    <span class="logo">Mehta Cad Cam </span>
+    <span (click)="openDialog()" *ngIf="!getLogin()">
+      <mat-icon>login</mat-icon>&nbsp;LogIn
+    </span>
+    <span *ngIf="getLogin()" (click)="logout()">
+      <mat-icon>logout</mat-icon>&nbsp;LogOut
+    </span>
+  </mat-card>
+  <div class="row g-0">
     <div class="col-md-1 bg-dark px-0 py-0">
       <mat-card class="sidebar-left">
-        <app-sidebarleft></app-sidebarleft>
+        <div class="topnav" id="myTopnav">
+          <a href="#home"><div class="menu">
+            <mat-icon>dashboard</mat-icon>
+            <span class="menu_title">Dashboard</span>
+          </div></a>
+          <a href="#news"><div class="menu">
+            <mat-icon>message</mat-icon>
+            <span class="menu_title">Messages</span>
+          </div></a>
+          <a href="#contact"><div class="menu">
+            <mat-icon>people</mat-icon>
+            <span class="menu_title">Members</span>
+          </div></a>
+          <a href="#contact"><div class="menu">
+            <mat-icon>insights</mat-icon>
+            <span class="menu_title">Statics</span>
+          </div></a>
+          <a href="#contact"><div class="menu">
+            <mat-icon>devices</mat-icon>
+            <span class="menu_title">Rooms/Devices</span>
+          </div></a>
+          <a href="#contact"> <div class="menu">
+            <mat-icon>settings</mat-icon>
+            <span class="menu_title">Settings</span>
+          </div></a>
+          <a href="javascript:void(0);" class="icon" (click)="myFunction()">
+            <div class="menu pull-right mx-4" >
+             <span class="menu_title"><i class="fa fa-bars"></i></span>
+
+            </div>
+
+          </a>
+          </div>
+        <!-- <app-sidebarleft id="myTopnav"></app-sidebarleft> -->
       </mat-card>
     </div>
     <div class="col-md-7 bg-dark px-0 py-0">
@@ -24,9 +57,8 @@
         <app-sidebarright></app-sidebarright>
       </mat-card>
     </div>
-<router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+  </div>
 
-</div>
-
-<app-footer></app-footer>
+  <app-footer></app-footer>
 </div>
