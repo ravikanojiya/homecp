@@ -33,16 +33,13 @@ export class DevicesComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.ds.getdevbyid(this.data.devid).subscribe((res) => {
       // this.devicedata = res.data.results;
-      console.log(this.devicedata, 'device by room');
     });
     if(this.devicedata[0].devname=='fan' && this.devicedata[0].onoffstatus=='1'){
 
       this.isShow=true;
-      console.log(this.isShow,'s');
 
     }else{
       this.isShow=false;
-      console.log(this.isShow,'s');
 
     }
     this.formGrouponoff = new FormGroup({
@@ -69,30 +66,24 @@ export class DevicesComponent implements OnInit, AfterViewInit {
       },
       change: function (args) {
         // handle the change event here
-        console.log('hi', args.value);
       },
     });
   }
   getadddev() {
     this.ds.getdevicebyroomid(this.roomid).subscribe((res) => {
       this.devicedata = res.data.result;
-      console.log(res.data.results);
     });
   }
   updatedim(model) {
     this.ds.updatefandim(model).subscribe((res) => {
-      console.log(res);
     });
   }
   upadateonoff(value, devid) {
-    console.log(value,'v');
 
     if (value == 1 && devid==1) {
       this.isShow = true;
-      console.log(this.isShow,'s');
 
     }
-    console.log(value, 'gvs');
     let body = {
       onoffstatus: value,
       devid: devid,
@@ -101,10 +92,6 @@ export class DevicesComponent implements OnInit, AfterViewInit {
       this.ds.getdevbyid(body.devid).subscribe((res) => {
         this.devdata = res.data.results;
 
-        console.log(
-          this.devdata[0].devname,
-          this.devdata[0].onoffstatus == 1 ? 'ON' : 'OFF'
-        );
 
         if (res.success == 1) {
 
@@ -120,6 +107,5 @@ export class DevicesComponent implements OnInit, AfterViewInit {
 
       });
     });
-    console.log(body);
   }
 }

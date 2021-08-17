@@ -61,7 +61,6 @@ export class ChangepwdComponent implements OnInit {
       });
     } else {
       this.ds.changeUserPwd(this.chngpwdForm.value).subscribe((res) => {
-        console.log(res, "ressss");
 
         if (res.success == 1) {
           localStorage.removeItem("islogin");

@@ -38,22 +38,13 @@ export class SidebarcenterComponent implements OnInit {
   ngOnInit(): void {
     this.uid = localStorage.getItem('uid');
     this.uname= localStorage.getItem('uname');
-    console.log(this.uname,"username");
-
-      // this.ds.getUser(this.uid).subscribe((res) => {
-      //   this.userdata = res.data.results[0];
-      //   console.log("Grtting Userdata :-", this.userdata)
-      // });
     this.ds.getapt().subscribe((res) => {
       this.getallpt = res.data.result;
-      console.log(res.data.result, 'apt');
     });
     this.ds.getAptTypes().subscribe((res) => {
       this.getAptType = res.data.results;
     });
-    // this.ds.getData().then(res=>{
-    //   this.alldata=res;
-    // })
+
     this.formGroup = new FormGroup({
       acceptTerms: new FormControl('', Validators.requiredTrue),
     });
@@ -80,7 +71,6 @@ export class SidebarcenterComponent implements OnInit {
       if (res.success == 1) {
         this.isLoading = false;
       }
-      console.log(this.roomData, 'roomdata');
     },(err) => {
       this.isLoadinga = false;
       this.apterrormsg = err.error.message;
@@ -102,7 +92,6 @@ export class SidebarcenterComponent implements OnInit {
       });
       if (res.success == 1) {
         this.isLoadingb = false;
-        console.log(this.deviceData, 'us');
 
         this.errorMessage = false;
       }
@@ -126,12 +115,9 @@ export class SidebarcenterComponent implements OnInit {
         this.getuseraptdata = res.data.result;
         if (res.success == 1) {
           this.isLoadinga = false;
-          console.log(this.getuseraptdata, 'us');
           this.errorMessage = false;
         }
-        // if (res.success == 0) {
-        //   this.errorMessage = true;
-        // }
+
       },
       (err) => {
         this.isLoadinga = false;

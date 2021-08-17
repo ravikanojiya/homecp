@@ -79,8 +79,6 @@ export class HomeComponent implements OnInit {
     localStorage.removeItem('uname');
     localStorage.removeItem('loginid');
 
-    console.log(localStorage.getItem('uname'));
-
     this.rut.navigate(['']);
     this.sb.open('You are Logged Out...!', '', {
       horizontalPosition: this.horizontalPosition,

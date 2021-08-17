@@ -45,11 +45,9 @@ export class AppartmentsComponent implements OnInit {
   ngOnInit(): void {
     this.roomid = this.activroutes.snapshot.params.id;
     this.uid = sessionStorage.getItem('uid');
-    console.log(this.uid, 'uid');
 
     this.ds.getaptbyuid(this.uid).subscribe((res) => {
       this.getallpt = res.data.result;
-      console.log(res.data.result, 'apt');
     });
 
     // this.ds.getData().then(res=>{
@@ -67,24 +65,13 @@ export class AppartmentsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
       this.ds.getapt().subscribe((res) => {
         this.getallpt = res.data.result;
-        console.log(res.data.result, 'apt');
       });
       this.ds.getdevicebyroomid(this.roomid).subscribe((res) => {
         this.devicedata = res.data.result;
-        console.log(res.data.result);
       });
     });
   }
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(LivingareaComponent, {
-  //     width: '650px',
-  //   });
 
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     console.log('The dialog was closed');
-  //   });
-  // }
 }

@@ -64,6 +64,8 @@ mat-card {
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(76 175 80 / 40%);
+
   cursor: pointer;
 }
 /* mat-card:hover {
@@ -84,7 +86,11 @@ mat-card {
   margin-left: 10px;
 } */
 .example-card1 mat-card:hover {
-  background-color: #ff4e5c;
+  background: linear-gradient(
+    60deg
+    , #ffa726, #fb8c00);
+    box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(76 175 80 / 40%);
+
   color: #fff;
 }
 .pull-right{margin-left: 700px;}

@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('uid', res.data[0].id);
         localStorage.setItem('uname',res.data[0].fname +" "+ res.data[0].lname);
         localStorage.setItem('loginid',res.data[0].loginid);
-        console.log(localStorage.getItem('uname'));
         this.rut.navigate(['../users']);
 
       } else {

@@ -32,24 +32,9 @@ export class AppComponent implements OnInit {
     private rut: Router,
     private sb: MatSnackBar
   ) {}
-  // openDialog() {
-  //   const dialogRef = this.dialog.open(AppartmentsComponent);
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  // }
-  // openDialogOffice() {
-  //   const dialogRef = this.dialog.open(OfficesComponent);
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  // }
   ngOnInit(): void {
-    // this.ds.getData().then(res=>{
-    //   this.alldata=res;
-    // })
+
     this.formGroup = new FormGroup({
       acceptTerms: new FormControl('', Validators.requiredTrue),
     });
@@ -89,7 +74,6 @@ export class AppComponent implements OnInit {
     localStorage.removeItem('islogin');
     localStorage.removeItem('uid');
     localStorage.removeItem('uname');
-    console.log(localStorage.getItem('uname'));
 
     this.rut.navigate(['']);
     this.sb.open('You are Logged Out...!', '', {

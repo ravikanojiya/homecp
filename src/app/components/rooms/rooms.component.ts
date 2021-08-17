@@ -17,7 +17,11 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataserviceService } from 'src/app/dataservice.service';
 import { from, of } from 'rxjs';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-rooms',
@@ -47,69 +51,49 @@ export class RoomsComponent implements OnInit {
   ngOnInit(): void {
     this.roomnamedata = this.data.roomname;
 
-    console.log(this.data.roomid, 'data');
     this.ds.getdevicebyroomid(this.data.roomid).subscribe((res) => {
       if (res.success == 1) {
         this.isLoadingb = false;
         this.deviceData = res.data.results;
-        this.deviceData.forEach(element => {
-            element.devices[0].data.forEach(ele => {
-                if(ele.value == 'ON'){
-                  ele.value=true;
-                }else{
-                  ele.value=false
-                }
-            });
+        this.deviceData.forEach((element) => {
+          element.devices[0].data.forEach((ele) => {
+            if (ele.value == 'ON') {
+              ele.value = true;
+            } else {
+              ele.value = false;
+            }
+          });
         });
-      console.log(this.deviceData, 'devroomid');
-
       }
     });
   }
   updateOnOff(value, Data) {
-    console.log(value, Data, 'onofff');
-    // value.forEach((element) => {
-    //   if (element.value == true) {
-    //     element.value = 'on';
-    //   } else {
-    //     element.value = 'off';
-    //   }
-    // });
-    var arr=[];
-      Data.devices.forEach(el => {
-        arr = el.data.map(item =>{
-          console.log("===========", item.value);
-          return {
-            trait:item.attribute,
-            value:item.value==true?'ON':'OFF'
-          }
-        })
-        // el.data.forEach(elem => {
-        //   // console.log("Getting JSON :-", elem)
-        //     elem.trait=elem.attribute,
-        //     elem.value=elem.value==true?'ON':'OFF'
-        // });
-        console.log("After Cghange", el)
+
+    var arr = [];
+    Data.devices.forEach((el) => {
+      arr = el.data.map((item) => {
+        return {
+          trait: item.attribute,
+          value: item.value == true ? 'ON' : 'OFF',
+        };
       });
-console.log("Gett", Data)
+
+    });
     var model = {
       devid: Data.manfdevid,
-      commands:[
+      commands: [
         {
-          id:Data.devices[0].id,
-          data:arr
-        }
+          id: Data.devices[0].id,
+          data: arr,
+        },
       ],
     };
-    console.log(model, 'Request Body');
     this.isLoadingab = true;
 
     this.ds.updateOnOffstatus(model).subscribe((res) => {
-      console.log(res);
-      if(res.success==1){
+      if (res.success == 1) {
         this.isLoadingab = false;
       }
-
     });
   }
   onNoClick(): void {
