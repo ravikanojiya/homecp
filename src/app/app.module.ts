@@ -45,36 +45,18 @@ import { MatPseudoCheckboxModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppartmentsComponent } from './components/appartments/appartments.component';
-import { OfficesComponent } from './components/offices/offices.component';
-import { LivingareaComponent } from './components/livingarea/livingarea.component';
-import { SidebarleftComponent } from './layout/pages/sidebarleft/sidebarleft.component';
-import { SidebarrightComponent } from './layout/pages/sidebarright/sidebarright.component';
-import { SidebarcenterComponent } from './layout/pages/sidebarcenter/sidebarcenter.component';
-import { RoomsComponent } from './components/rooms/rooms.component';
-import { DevicesComponent } from './components/devices/devices.component';
-import { FooterComponent } from './layout/pages/footer/footer.component';
-import { LoginComponent } from './login/login.component';
-import { RoomlistComponent } from './components/roomlist/roomlist.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
 @NgModule({
   declarations: [
     AppComponent,
-    AppartmentsComponent,
-    OfficesComponent,
-    LivingareaComponent,
-    SidebarleftComponent,
-    SidebarrightComponent,
-    SidebarcenterComponent,
-    RoomsComponent,
-    DevicesComponent,
-    FooterComponent,
-    LoginComponent,
-    RoomlistComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SharedModule,
     BrowserAnimationsModule,
     MatSliderModule,
     MatPseudoCheckboxModule,
@@ -114,7 +96,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     NgbModule,
   ],
-  providers: [
+  providers: [AuthModule,
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
   ],

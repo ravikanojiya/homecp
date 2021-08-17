@@ -1,20 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { DataserviceService } from '../dataservice.service';
+import { DataserviceService } from 'src/app/dataservice.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  test=new Date();
   loginform: FormGroup;
   user;
   erroruser: Boolean = false;
@@ -23,8 +20,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private ds: DataserviceService,
     private rut: Router,
-    public dialog: MatDialog,
-    public dialogRef: MatDialogRef<LoginComponent>,
     private sb: MatSnackBar
   ) {}
 
@@ -35,12 +30,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', Validators.required),
     });
   }
-  getLogin() {
-    if (localStorage.getItem('islogin')) {
-      return true;
-    }
-    return false;
-  }
+
   onSubmit() {
     if(this.loginform.valid){
 
@@ -55,8 +45,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('islogin', 'true');
         localStorage.setItem('uid', res.data[0].id);
         localStorage.setItem('uname',res.data[0].fname +" "+ res.data[0].lname);
+        localStorage.setItem('loginid',res.data[0].loginid);
         console.log(localStorage.getItem('uname'));
-        this.rut.navigate(['/']);
+        this.rut.navigate(['../users']);
 
       } else {
         this.erroruser = true;
@@ -69,11 +60,13 @@ export class LoginComponent implements OnInit {
         });
       }
     });
-    this.ngOnInit();
   }
+  }
+  getLogin() {
+    if (localStorage.getItem('islogin')) {
+      return true;
+    }
+    return false;
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 }

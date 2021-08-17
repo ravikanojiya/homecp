@@ -1,21 +1,21 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import {
-  MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
+  MatSnackBar,
 } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AppartmentsComponent } from './components/appartments/appartments.component';
-import { OfficesComponent } from './components/offices/offices.component';
-import { DataserviceService } from './dataservice.service';
+import { LoginComponent } from 'src/app/auth/login/login.component';
+import { DataserviceService } from 'src/app/dataservice.service';
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
 })
-export class AppComponent implements OnInit {
+export class HomeComponent implements OnInit {
   title = 'veritas-homeautomation';
   color = 'accent';
   checked = false;
@@ -26,27 +26,15 @@ export class AppComponent implements OnInit {
   userdata;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
+  uname;
   constructor(
     private ds: DataserviceService,
     public dialog: MatDialog,
     private rut: Router,
     private sb: MatSnackBar
   ) {}
-  // openDialog() {
-  //   const dialogRef = this.dialog.open(AppartmentsComponent);
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  // }
-  // openDialogOffice() {
-  //   const dialogRef = this.dialog.open(OfficesComponent);
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  // }
   ngOnInit(): void {
+    this.uname = localStorage.getItem('uname');
     // this.ds.getData().then(res=>{
     //   this.alldata=res;
     // })
@@ -59,11 +47,11 @@ export class AppComponent implements OnInit {
     });
   }
   myFunction() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-      x.className += " responsive";
+    var x = document.getElementById('myTopnav');
+    if (x.className === 'topnav') {
+      x.className += ' responsive';
     } else {
-      x.className = "topnav";
+      x.className = 'topnav';
     }
   }
   // openDialog(): void {
@@ -89,6 +77,8 @@ export class AppComponent implements OnInit {
     localStorage.removeItem('islogin');
     localStorage.removeItem('uid');
     localStorage.removeItem('uname');
+    localStorage.removeItem('loginid');
+
     console.log(localStorage.getItem('uname'));
 
     this.rut.navigate(['']);

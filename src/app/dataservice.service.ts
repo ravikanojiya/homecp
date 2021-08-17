@@ -37,7 +37,7 @@ export class DataserviceService {
     );
   }
   getdevicebyroomid(roomid): Observable<any> {
-    return this.http.get(`${environment.base_URL}api/device/room/${roomid}`);
+    return this.http.get(`${environment.changed_base_url}device/room/${roomid}`);
   }
   updatefandim(model): Observable<any> {
     return this.http.patch(
@@ -48,12 +48,19 @@ export class DataserviceService {
   getUserlogin(model): Observable<any> {
     return this.http.post(`${environment.base_URL}api/auth/user/login`, model);
   }
-  updateOnOffstatus(model): Observable<any> {
+  changeUserPwd(model): Observable<any> {
     return this.http.patch(
-      `${environment.base_URL}api/device/update/attribute`,
+      `${environment.base_URL}api/auth/user/changePassword`,
       model
     );
   }
+  updateOnOffstatus(model): Observable<any> {
+    return this.http.patch(
+      environment.changed_base_url+`device/update/attribute`,
+      model
+    );
+  }
+
   // getalluser(): Promise<any> {
   //   return this.http.get(`${environment.base_URL}getalluser`).toPromise();
   // }

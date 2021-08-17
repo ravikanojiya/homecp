@@ -2,7 +2,13 @@ import { ThrowStmt } from '@angular/compiler';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
-import { debounceTime, distinctUntilChanged, first } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  first,
+  map,
+  mergeAll,
+} from 'rxjs/operators';
 import {
   MatDialog,
   MatDialogRef,
@@ -10,6 +16,8 @@ import {
 } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataserviceService } from 'src/app/dataservice.service';
+import { from, of } from 'rxjs';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-rooms',
@@ -19,90 +27,90 @@ import { DataserviceService } from 'src/app/dataservice.service';
 export class RoomsComponent implements OnInit {
   isLoadingb: boolean = true;
   isLoadingab: boolean = false;
-  deviceData = [];
+  deviceData: any = [];
   errorMessage: boolean;
-  devData = [];
+  devData: any;
   dev = [];
   roomnamedata = '';
+  attdata: any = [];
   devForm: FormGroup;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   constructor(
     private ds: DataserviceService,
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<RoomsComponent>,
+    private sb: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: { roomid: number; roomname: string }
   ) {}
 
   ngOnInit(): void {
     this.roomnamedata = this.data.roomname;
-    // this.devForm=new FormGroup({
-    //   devid:new FormControl('',Validators.required),
-    //   value:new FormControl('',Validators.required),
-    // })
+
     console.log(this.data.roomid, 'data');
     this.ds.getdevicebyroomid(this.data.roomid).subscribe((res) => {
       if (res.success == 1) {
         this.isLoadingb = false;
         this.deviceData = res.data.results;
-        this.deviceData.sort(function (a, b) {
-          return a.devname.localeCompare(b.devname);
+        this.deviceData.forEach(element => {
+            element.devices[0].data.forEach(ele => {
+                if(ele.value == 'ON'){
+                  ele.value=true;
+                }else{
+                  ele.value=false
+                }
+            });
         });
+      console.log(this.deviceData, 'devroomid');
 
-        this.deviceData.forEach((element) => {
-          element.attribute.forEach((element) => {
-            if (element.value == 'on') {
-              element.value = true;
-            } else {
-              element.value = false;
-            }
-          });
-        });
-        console.log(this.deviceData, 'us');
       }
     });
-
-    // console.log(this.getroombyaptid.aptid, 'room by apt id');
   }
-  updateOnOff(value, id) {
-    console.log(value, id, 'onofff');
-    value.forEach((element) => {
-      if (element.value == true) {
-        element.value = 'on';
-      } else {
-        element.value = 'off';
-      }
-    });
+  updateOnOff(value, Data) {
+    console.log(value, Data, 'onofff');
+    // value.forEach((element) => {
+    //   if (element.value == true) {
+    //     element.value = 'on';
+    //   } else {
+    //     element.value = 'off';
+    //   }
+    // });
+    var arr=[];
+      Data.devices.forEach(el => {
+        arr = el.data.map(item =>{
+          console.log("===========", item.value);
+          return {
+            trait:item.attribute,
+            value:item.value==true?'ON':'OFF'
+          }
+        })
+        // el.data.forEach(elem => {
+        //   // console.log("Getting JSON :-", elem)
+        //     elem.trait=elem.attribute,
+        //     elem.value=elem.value==true?'ON':'OFF'
+        // });
+        console.log("After Cghange", el)
+      });
+console.log("Gett", Data)
     var model = {
-      devid: id,
-      attribute: value,
+      devid: Data.manfdevid,
+      commands:[
+        {
+          id:Data.devices[0].id,
+          data:arr
+        }
+      ],
     };
     console.log(model, 'Request Body');
     this.isLoadingab = true;
 
     this.ds.updateOnOffstatus(model).subscribe((res) => {
-    this.isLoadingab = false;
+      console.log(res);
+      if(res.success==1){
+        this.isLoadingab = false;
+      }
 
-      value.forEach((element) => {
-        if (element.value == 'on') {
-          element.value = true;
-        } else {
-          element.value = false;
-        }
-      });
-      // if (!this.deviceData) {
-      //   return;
-      // }
     });
-    // this.ds.updateOnOffstatus(model).subscribe((res) => {
-    //   if (res.success == 1) {
-    //     this.isLoadingab = false;
-
-    //     // alert('yooooooooo')
-    //     this.ds.getdevbyid(id).subscribe(res=>{
-    //       this.dev=res.data.results;
-    //     })
-    //     // this.ngOnInit()
-    //   }
-    // });
   }
   onNoClick(): void {
     this.dialogRef.close();

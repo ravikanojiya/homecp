@@ -7,15 +7,18 @@
   justify-content: space-between;
   animation: ani 10s linear infinite;
   cursor: pointer;
+  position: sticky !important;
+  top: 0;
 }
 .logo {
   font-size: 36px;
+  display: flex;justify-content: center;align-items: center;
 }
-span {
+/* span {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 @keyframes ani {
   0% {
     filter: hue-rotate(0deg);
@@ -254,6 +257,12 @@ a .menu:hover {
 
   display: none;
 }
+mat-toolbar {
+  display:flex;
+  position: fixed;
+  justify-content: space-between;
+}
+
 
 @media screen and (max-width: 600px) {
   .topnav a {display: none;}
@@ -277,4 +286,3 @@ a .menu:hover {
   }
   .logo{font-size: 24px;}
 }
-

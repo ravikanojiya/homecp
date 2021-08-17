@@ -1,0 +1,76 @@
+<!-- <div class="px-3 py-3">
+  <h3></h3>
+</div> -->
+<div class="d-flex row">
+  <mat-toolbar style="color: #FFF; background: #43cea2;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #185a9d, #43cea2);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #185a9d, #43cea2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */">
+    <span style="font-weight: 400; padding: 10px;">Home-Automation</span>
+  </mat-toolbar>
+
+<div class="login" style="background: #16222A;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3A6073, #16222A);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3A6073, #16222A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+">
+  <mat-card style="border-left: 5px solid lightsalmon;">
+    <mat-card-content>
+      <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+        <h2 style="color: #9C27B0;font-weight: 400;">LOGIN</h2>
+        <mat-form-field class="full-width-input">
+          <input
+            matInput
+            placeholder="Username"
+            formControlName="loginid"
+            required
+            autofocus
+          />
+          <mat-error> Please provide a valid email address </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width-input">
+          <input
+            matInput
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+            required
+          />
+
+          <mat-error> Please provide a valid password </mat-error>
+        </mat-form-field>
+        <!-- <a mat-button class="pull-left" routerLink="changepwd">Forgot Password</a> -->
+
+        <button
+        [disabled]="!loginform.valid"
+        type="submit"
+        mat-raised-button class="pull-right" color="primary"  >
+         Login
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+  <mat-toolbar style="background: #43cea2;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #185a9d, #43cea2);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #185a9d, #43cea2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */" class="d-flex justify-content-center flex-wrap">
+
+      <!-- Copyright -->
+      <div color="secondary" style="font-size: 16px;color: #fff;"> &copy;
+        {{ test | date: "yyyy" }}, made by
+        <a style="color:lime;" href="https://www.veritastechnolabs.com" target="_blank"
+          >Veritas Technolabs</a
+        >
+        where ideas turn into reality.
+        <a  href="https://www.creative-tim.com" style="color: lime;"> Veritas Technolabs </a>
+      </div>
+      <!-- Copyright -->
+
+  </mat-toolbar>
+</div>
+<!-- Footer -->
+
+<!-- Footer -->
+

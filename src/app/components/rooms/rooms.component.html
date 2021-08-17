@@ -1,56 +1,60 @@
 <div class="container-fluid">
-  <button mat-button mat-dialog-close class="ml-30" cdkFocusInitial>Close</button>
+  <button mat-button mat-dialog-close class="ml-30" cdkFocusInitial>
+    Close
+  </button>
 
   <mat-dialog-content>
-  <div class="row">
+    <div class="row">
+      <div class="example-card">
+        <h2>
+          <span
+            >{{ roomnamedata }}&nbsp;Devices&nbsp;<mat-icon
+              >devices_other</mat-icon
+            ></span
+          >
+        </h2>
+        <hr />
 
-    <div class="example-card">
-      <h2>
-        <span
-          >{{ roomnamedata }}&nbsp;Devices&nbsp;<mat-icon
-            >devices_other</mat-icon
-          ></span
+        <div
+          class="
+            example-card1
+            d-flex
+            justify-content-center
+            col-sm-12
+            flex-wrap
+          "
         >
-      </h2>
-      <hr />
+          <mat-progress-bar
+            mode="indeterminate"
+            *ngIf="isLoadingb"
+          ></mat-progress-bar>
+          <!-- <mat-progress-bar
+          mode="indeterminate"
+          *ngIf="isLoadingab"
+        ></mat-progress-bar> -->
+          <mat-card *ngFor="let devdata of deviceData">
+            {{ devdata.devname | titlecase }}
+            <mat-card-subtitle *ngFor="let d of devdata.devices[0].data">
+              Attribute:- <span>{{ d.attribute }}</span><br><br>
+              <!-- <span class="text-success"><strong>{{ d.value }}</strong></span> -->
+              <mat-slide-toggle
+                [(ngModel)]="d.value"
+                [checked]="d.value"
+                (change)="updateOnOff(d.value, devdata)"
+              >
+                {{ d.value == true ? "ON" : "OFF" }}
+              </mat-slide-toggle>
+            </mat-card-subtitle>
+          </mat-card>
+        </div>
 
-      <div class="example-card1 d-flex justify-content-center col-sm-12 flex-wrap">
-
+        <mat-error *ngIf="errorMessage">No data found</mat-error>
         <mat-progress-bar
           mode="indeterminate"
           *ngIf="isLoadingb"
         ></mat-progress-bar>
-        <!-- <mat-progress-bar
-          mode="indeterminate"
-          *ngIf="isLoadingab"
-        ></mat-progress-bar> -->
-        <mat-card *ngFor="let devdata of deviceData">
-          {{ devdata.devname | titlecase }}
-          <mat-card-subtitle
-            >Status:-{{ devdata.attribute[0].value == true ? "ON" : "OFF" }}</mat-card-subtitle
-          >
-          <mat-card-content>
-            <!-- <form [formGroup]="devForm"> -->
-            <mat-slide-toggle
-              [(ngModel)]="devdata.attribute[0].value"
-              [checked]="devdata.attribute[0].value"
-              (change)="updateOnOff(devdata.attribute, devdata.id)"
-            >
-              {{ devdata.attribute[0].value == true ? "ON" : "OFF" }}
-            </mat-slide-toggle>
-            <!-- </form> -->
-          </mat-card-content>
-        </mat-card>
-
       </div>
-
-      <mat-error *ngIf="errorMessage">No data found</mat-error>
-      <mat-progress-bar mode="indeterminate" *ngIf="isLoadingb"></mat-progress-bar>
     </div>
-
-  </div>
-
-</mat-dialog-content>
-<mat-divider class="mt-3"></mat-divider>
+  </mat-dialog-content>
+  <mat-divider class="mt-3"></mat-divider>
 </div>
-

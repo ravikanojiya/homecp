@@ -1,0 +1,89 @@
+<div class="d-flex row">
+  <mat-toolbar style="color: #FFF; background: #43cea2;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #185a9d, #43cea2);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #185a9d, #43cea2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */">
+    <span style="font-weight: 400; padding: 10px;">Home-Automation</span>
+  </mat-toolbar>
+
+<div class="login" style="background: #16222A;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3A6073, #16222A);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3A6073, #16222A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="chngpwdForm" (ngSubmit)="chgpwd()">
+        <h2>Change-Password</h2>
+        <mat-form-field class="full-width-input">
+          <input
+            matInput
+            placeholder="Old Password"
+            formControlName="old_password"
+            required
+            autofocus
+          />
+          <mat-error> Please provide old password </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width-input">
+          <input
+            id="newpwd"
+            matInput
+            type="password"
+            placeholder="New Password"
+            formControlName="new_password"
+            required
+          />
+
+          <mat-error> Please provide a New password </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input
+            id="cnfpwd"
+            matInput
+            type="password"
+            placeholder="Confirm Password"
+            required
+            (keyup)="checkpwd()"
+          />
+
+          <mat-error> Please provide a Confirm password </mat-error>
+        </mat-form-field>
+        <p class="text-danger"> {{pwdMsg}} </p>
+
+
+        <button
+          mat-raised-button
+          type="submit"
+          class="pull-right"
+          color="primary"
+          [disabled]="!chngpwdForm.valid"
+        >
+          Change Password
+        </button>
+        <a mat-button class="pull-left" routerLink="../"
+          >Back to Dashboard</a
+        >
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+<mat-toolbar style="background: #43cea2;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #185a9d, #43cea2);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #185a9d, #43cea2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */" class="d-flex justify-content-center flex-wrap">
+
+      <!-- Copyright -->
+      <div color="secondary" style="font-size: 16px;color: #fff;"> &copy;
+        {{ test | date: "yyyy" }}, made by
+        <a style="color:lime;" href="https://www.veritastechnolabs.com" target="_blank"
+          >Veritas Technolabs</a
+        >
+        where ideas turn into reality.
+        <a  href="https://www.creative-tim.com" style="color: lime;"> Veritas Technolabs </a>
+      </div>
+      <!-- Copyright -->
+
+  </mat-toolbar>
+</div>

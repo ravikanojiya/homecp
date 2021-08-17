@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   // base_URL:"http://localhost:3000/"
-  base_URL:"http://apihomeautomation.mehtaindia.co.in/"
+  base_URL:"http://apihomeautomation.mehtaindia.co.in/",
+  changed_base_url:"http://apihomeautomation.mehtaindia.co.in/api/"
 
 };
 
