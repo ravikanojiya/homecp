@@ -1,7 +1,5 @@
 import {
-  AfterViewInit,
   Component,
-  ElementRef,
   Inject,
   OnInit,
   ViewChild,
@@ -33,6 +31,7 @@ export class RoomsComponent implements OnInit {
   @ViewChild('devname') devname: any;
   dev = [];
   roomnamedata = '';
+  indexx:any;
   attdata: any = [];
   isShow: boolean;
   devForm: FormGroup;
@@ -76,10 +75,12 @@ export class RoomsComponent implements OnInit {
   // console.log(this.devname.nativeElement.value,"Deice name");
 
   //   }
-  editdevname() {
+  editdevname(i:any) {
+    this.indexx=i;
     this.isShow = true;
   }
   closedevdata(){
+    this.indexx='';
     this.isShow = false;
 
   }
@@ -92,6 +93,7 @@ export class RoomsComponent implements OnInit {
     console.log(devnamebody, 'devnamebody');
     this.ds.updatedevname(devnamebody).subscribe((res) => {
       this.ngOnInit();
+      this.indexx='';
       this.isShow = false;
     });
   }

@@ -2,7 +2,6 @@
   <button mat-button mat-dialog-close class="ml-30 btn-danger" cdkFocusInitial>
     Close
   </button>
-
   <mat-dialog-content>
     <div class="row">
       <div class="example-card">
@@ -14,7 +13,6 @@
           >
         </h2>
         <hr />
-
         <div
           class="
             example-card1
@@ -28,41 +26,74 @@
             mode="indeterminate"
             *ngIf="isLoadingb"
           ></mat-progress-bar>
-
           <mat-card
-            *ngFor="let devdata of deviceData;index as i"
-            class="ml-3"
-            style="height: 100%; width: 240px"
+            *ngFor="let devdata of deviceData; index as i"
+            class="ml-3 p-2"
+            style="width: 240px"
           >
-            <span class="mb-2">
-              <h2 matTooltipPosition="above" matTooltip="Click to Change Device Name" class="text-center" *ngIf="!isShow" (click)="editdevname(i)">{{ devdata.devname | titlecase }}</h2>
-            <div *ngIf="isShow" class="d-flex align-items-center">
-
-              <input type="text" class="form-control"  [(ngModel)]="devdata.devname"
-              (blur)="chng(devdata.devname,devdata.devid)"  >&nbsp;
-              <mat-icon matTooltipPosition="above" matTooltip="Save"(click)="chng(devdata.devname,devdata.devid)">edit</mat-icon>
-              <mat-icon matTooltipPosition="above" matTooltip="Cancel" (click)="closedevdata()">cancel</mat-icon>
+            <div class="w-100" *ngIf="!isShow || indexx != i">
+              <mat-icon
+                class="pull-right ml-3"
+                matTooltipPosition="above"
+                matTooltip="Edit"
+                (click)="editdevname(i)"
+                >edit</mat-icon
+              >
             </div>
+            <span class="mb-2">
+              <h2
+                matTooltipPosition="above"
+                matTooltip="Click to Change Device Name"
+                class="text-center"
+                *ngIf="!isShow || indexx != i"
+                (click)="editdevname(i)"
+              >
+                {{ devdata.devname | titlecase }}
+              </h2>
+              <div *ngIf="isShow && indexx == i" class="d-flex align-items-center">
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="devdata.devname"
+                  (blur)="chng(devdata.devname, devdata.devid)"
+                />&nbsp;
+                <mat-icon
+                  matTooltipPosition="above"
+                  matTooltip="Save"
+                  (click)="chng(devdata.devname, devdata.devid)"
+                  >edit</mat-icon
+                >
+                <mat-icon
+                  matTooltipPosition="above"
+                  matTooltip="Cancel"
+                  (click)="closedevdata()"
+                  >cancel</mat-icon
+                >
+              </div>
             </span>
             <span class="" *ngFor="let switch of devdata.devices">
-              <img src={{switch.offimage}} class="img-thumbnail" alt="" width="100px" height="100px" style="margin-bottom: 10px;">
+              <img
+                src="{{ switch.offimage }}"
+                class="img-thumbnail"
+                alt=""
+                width="100px"
+                height="100px"
+                style="margin-bottom: 10px"
+              />
               <mat-card-subtitle
-              class="text-center"
-              *ngFor="let d of switch.data"
-            >
-
-              <mat-slide-toggle
-                [(ngModel)]="d.value"
-                [checked]="d.value"
-                (change)="updateOnOff(d.value, devdata)"
+                class="text-center"
+                *ngFor="let d of switch.data"
               >
-              </mat-slide-toggle>
-            </mat-card-subtitle>
+                <mat-slide-toggle
+                  [(ngModel)]="d.value"
+                  [checked]="d.value"
+                  (change)="updateOnOff(d.value, devdata)"
+                >
+                </mat-slide-toggle>
+              </mat-card-subtitle>
             </span>
-
           </mat-card>
         </div>
-
         <mat-error *ngIf="errorMessage">No data found</mat-error>
         <mat-progress-bar
           mode="indeterminate"
