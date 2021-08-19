@@ -60,6 +60,9 @@ export class DataserviceService {
       model
     );
   }
+  updatedevname(model):Observable<any>{
+    return this.http.patch(environment.changed_base_url+`device/update/devname`,model)
+  }
 
   // getalluser(): Promise<any> {
   //   return this.http.get(`${environment.base_URL}getalluser`).toPromise();

@@ -28,35 +28,38 @@
             mode="indeterminate"
             *ngIf="isLoadingb"
           ></mat-progress-bar>
-          <!-- <mat-progress-bar
-          mode="indeterminate"
-          *ngIf="isLoadingab"
-        ></mat-progress-bar> -->
+
           <mat-card
-            *ngFor="let devdata of deviceData"
+            *ngFor="let devdata of deviceData;index as i"
             class="ml-3"
-            style="height: 260px; width: 240px"
+            style="height: 100%; width: 240px"
           >
             <span class="mb-2">
-              <h2 class="text-center">{{ devdata.devname | titlecase }}</h2>
-              <mat-divider></mat-divider>
+              <h2 matTooltipPosition="above" matTooltip="Click to Change Device Name" class="text-center" *ngIf="!isShow" (click)="editdevname(i)">{{ devdata.devname | titlecase }}</h2>
+            <div *ngIf="isShow" class="d-flex align-items-center">
+
+              <input type="text" class="form-control"  [(ngModel)]="devdata.devname"
+              (blur)="chng(devdata.devname,devdata.devid)"  >&nbsp;
+              <mat-icon matTooltipPosition="above" matTooltip="Save"(click)="chng(devdata.devname,devdata.devid)">edit</mat-icon>
+              <mat-icon matTooltipPosition="above" matTooltip="Cancel" (click)="closedevdata()">cancel</mat-icon>
+            </div>
             </span>
-            <mat-card-subtitle
+            <span class="" *ngFor="let switch of devdata.devices">
+              <img src={{switch.offimage}} class="img-thumbnail" alt="" width="100px" height="100px" style="margin-bottom: 10px;">
+              <mat-card-subtitle
               class="text-center"
-              *ngFor="let d of devdata.devices[0].data"
+              *ngFor="let d of switch.data"
             >
-              <mat-chip
-                ><strong> {{ d.attribute }}</strong></mat-chip
-              ><br /><br />
-              <!-- <span class="text-success"><strong>{{ d.value }}</strong></span> -->
+
               <mat-slide-toggle
                 [(ngModel)]="d.value"
                 [checked]="d.value"
                 (change)="updateOnOff(d.value, devdata)"
               >
-                <strong>{{ d.value == true ? "ON" : "OFF" }}</strong>
               </mat-slide-toggle>
             </mat-card-subtitle>
+            </span>
+
           </mat-card>
         </div>
 
