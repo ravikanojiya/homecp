@@ -50,6 +50,10 @@
               >
                 {{ devdata.devname | titlecase }}
               </h2>
+              <span>
+                {{ devdata.ipaddress }}
+
+              </span>
               <div *ngIf="isShow && indexx == i" class="d-flex align-items-center">
                 <input
                   type="text"

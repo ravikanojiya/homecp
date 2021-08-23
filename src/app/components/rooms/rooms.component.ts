@@ -71,10 +71,7 @@ export class RoomsComponent implements OnInit {
       }
     });
   }
-  //   ngAfterViewInit(){
-  // console.log(this.devname.nativeElement.value,"Deice name");
 
-  //   }
   editdevname(i:any) {
     this.indexx=i;
     this.isShow = true;

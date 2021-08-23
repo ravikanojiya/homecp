@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { DevicesComponent } from 'src/app/components/devices/devices.component';
 import { RoomsComponent } from 'src/app/components/rooms/rooms.component';
 import { DataserviceService } from 'src/app/dataservice.service';
 
